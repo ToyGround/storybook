@@ -16,11 +16,12 @@ const ButtonStyle = styled.button`
 export type ButtonProps = {
   children : ReactNode,
   className : 'small' | 'medium' | 'large',
-  isDisabled? : boolean
+  isDisabled? : boolean,
+  onClick?: () => void
 }
 
-export default function Button ({children,isDisabled=false,className}:ButtonProps) {
-  return <ButtonStyle className={className} disabled={isDisabled}>{children}</ButtonStyle>
+export default function Button ({children,isDisabled=false,className,onClick}:ButtonProps) {
+  return <ButtonStyle onClick={onClick} className={className} disabled={isDisabled}>{children}</ButtonStyle>
 }
 
 

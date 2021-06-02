@@ -1,12 +1,13 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
+import { action } from "@storybook/addon-actions";
 import Button, {ButtonProps} from '../Button';
 
 export default {
   title: 'Example/Button',
   component: Button,
   argTypes: {
-    backgroundColor: { control: 'color' },
+    onClick: { action: 'clicked' }
   },
 } as Meta;
 
@@ -28,4 +29,18 @@ export const Small = Template.bind({});
 Small.args = {
   className: 'small',
   children: 'Button',
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  className: 'small',
+  children: 'Button',
+  isDisabled: true
+};
+
+export const Click = Template.bind({});
+Click.args = {
+  className: 'small',
+  children: 'Button',
+  onClick: action("Button is clicked!")
 };
