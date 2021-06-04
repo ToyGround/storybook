@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-kind-default {
+    @apply bg-subColor text-white
+}
+
+.btn-kind-outlined {
+    @apply ring-1 ring-subColor text-subColor
+}
