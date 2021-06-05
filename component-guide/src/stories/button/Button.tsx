@@ -4,6 +4,7 @@ import tw from 'twin.macro';
 import '../../styles/styles.css';
 
 export type ButtonPropsType = {
+  /* children : React Node */
   children: ReactNode;
   className?: string;
   icon?: ReactNode;
@@ -13,34 +14,12 @@ export type ButtonPropsType = {
   onClick?: () => void;
 }
 
-const Container = styled.button<ButtonPropsType>`
-  ${tw`p-2 rounded-md flex justify-center items-center`}
-  svg {
-    ${tw`mr-1.5`}
-  }
-
-  ${props => {
-    const {size} = props;
-
-    switch (size) {
-      case 'small' :
-        return tw`w-1/3`;
-      case 'medium' :
-        return tw`w-1/2`;
-      case 'large' :
-        return tw`w-2/3`;
-      case 'full' :
-        return tw`w-full`;
-    }
-  }}
-`;
-
 export default function Button(
   {
     children,
     icon,
-    size = 'full',
-    kind = 'contained',
+    size,
+    kind,
     ...props
   }: ButtonPropsType) {
 
@@ -56,3 +35,32 @@ export default function Button(
   );
 }
 
+/**
+ * styled Import / export 할경우 storybook typeError
+ * */
+const Container = styled.button<ButtonPropsType>`
+  ${tw`p-2 rounded-md flex justify-center items-center`}
+  svg {
+    ${tw`mr-1.5`}
+  }
+
+  ${props => {
+  const {size} = props;
+
+  switch (size) {
+    case 'small' :
+      return tw`w-1/3`;
+    case 'medium' :
+      return tw`w-1/2`;
+    case 'large' :
+      return tw`w-2/3`;
+    case 'full' :
+      return tw`w-full`;
+  }
+}}
+`;
+
+Button.defaultProps = {
+  size: 'full',
+  kind: 'contained'
+}
